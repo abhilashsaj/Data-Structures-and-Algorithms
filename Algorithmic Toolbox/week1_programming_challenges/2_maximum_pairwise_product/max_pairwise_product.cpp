@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+using namespace std;
+
 int MaxPairwiseProduct(const std::vector<int>& numbers) {
     int max_product = 0;
     int n = numbers.size();
@@ -16,14 +18,40 @@ int MaxPairwiseProduct(const std::vector<int>& numbers) {
     return max_product;
 }
 
+long long MaxPairwiseProductFast(const std::vector<int>& numbers) {
+    int max_product = 0;
+    int n = numbers.size();
+
+    int max_index1 =-1;
+    int max_index2 = -1;
+    
+    for(int i =0; i< n; i++)
+    {
+        if(max_index1 == -1 || numbers[max_index1]<numbers[i] ){
+            max_index1 = i;
+        }
+        
+    }
+    
+    for(int j =0; j< n; j++)
+    {
+        if((j!=max_index1) && (max_index2 == -1 || numbers[max_index2]<numbers[j]) ){
+            max_index2 = j;
+        }
+        
+    }
+    
+    return (long long) numbers[max_index1] *numbers[max_index2];
+}
+
 int main() {
     int n;
-    std::cin >> n;
-    std::vector<int> numbers(n);
+    cin >> n;
+    vector<int> numbers(n);
     for (int i = 0; i < n; ++i) {
-        std::cin >> numbers[i];
+        cin >> numbers[i];
     }
 
-    std::cout << MaxPairwiseProduct(numbers); << "\n";
+    cout << MaxPairwiseProduct(numbers) << "\n";
     return 0;
 }
