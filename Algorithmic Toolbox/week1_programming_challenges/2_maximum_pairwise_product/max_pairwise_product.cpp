@@ -1,3 +1,11 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -35,13 +43,13 @@ long long MaxPairwiseProductFast(const std::vector<int>& numbers) {
     
     for(int j =0; j< n; j++)
     {
-        if((j!=max_index1) && (max_index2 == -1 || numbers[max_index2]<numbers[j]) ){
+        if((j!=max_index1) && (max_index2 == -1 || numbers[j]>numbers[max_index2]) ){
             max_index2 = j;
         }
         
     }
     
-    return (long long) numbers[max_index1] *numbers[max_index2];
+    return ((long long) numbers[max_index1]) *numbers[max_index2];
 }
 
 int main() {
@@ -52,6 +60,6 @@ int main() {
         cin >> numbers[i];
     }
 
-    cout << MaxPairwiseProduct(numbers) << "\n";
+    cout << MaxPairwiseProductFast(numbers) << "\n";
     return 0;
 }
